@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block favicon %} {{ super() }} {% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    .important {
+        color: #336699;
+    }
+</style>
+{% endblock %}
+{% block content %}
+{{ super() }}
+<h3> get admin user:</h3>
+<h3>user name: "test"</h3>
+<h3>password : "1234"</h3>
+</p>
+{% if error %}
+<p class=error><strong>Error:</strong> {{ error }}
+{% endif %}
+<form action="/admin/auth" method="POST">
+    User name: <input type="text" name="username"><br>
+    Password: <input type="password" name="password"><br>
+    <input type="submit" value="Submit" >
+    </form>
+    <br><br><br><br>
+<h5>Sign up for a BookSore now to Loan a books
+</h5>
+<form action="/user/cust" method="POST">
+    name: <input type="text" name="name"><br>
+    City: <input type="text" name="city"><br>
+    Age: <input type="text" name="age"><br>
+    <input type="submit" value="Submit" >
+    
+
+{% endblock %}
+{% block footer %} {{ super() }} {% endblock %}

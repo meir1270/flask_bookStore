@@ -1,0 +1,81 @@
+{% extends "adLayout.html" %}
+{% block title %}Books{% endblock %}
+{% block favicon %} {{ super() }} {% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    .important {
+        color: #336699;
+    }
+</style>
+{% endblock %}
+{% block content %}
+{{ super() }}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add a book
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/admin/addbook" method="POST">
+                Book name: <input type="text" name="name"><br>
+                author name: <input type="text" name="author"><br>
+                year published: <input type="text" name="yearPublished"><br>
+                Book type: <input type="number" name="type"><br>
+                <div class="modal-footer">
+                <input type="submit" value="Add a book" class="btn btn-success">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h1>Whellcome {{username}} member to Books list </h1>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for book in res %}
+    <div class="col">
+        <div class="card">
+          <img src="https://picsum.photos/300/16{{loop.index}}" width="100" height="200" class="card-img-top" alt="...">
+          <div class="card-body">
+                <h5 class="card-title">book name: {{book.name}} </h5>
+                <p class="card-text">id: {{book.id}}</p>
+                <p class="card-text">author name: {{book.author}}</p>
+                <p class="card-text">year published: {{book.yearPublished}}</p>
+                <p class="card-text">type: {{book.type}}</p>
+                <a class= "btn btn-danger" href="/admin/delbook?id={{book.id}}">Delete</a>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+<!-- end loop card -->
+
+<div style="display: table; margin: 0 auto;" class="row row-cols-1 row-cols-md-1 g-4">
+  {% for book1 in findBook %}
+  <div class="col">
+    <div class="card">
+      <img src="https://picsum.photos/300/16{{loop.index}}" width="100" height="200" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">book name: {{book1.name}} </h5>
+        <p class="card-text">id: {{book1.id}}</p>
+        <p class="card-text">author name: {{book1.author}}</p>
+        <p class="card-text">year published: {{book1.yearPublished}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+{% block footer %} {{ super() }} {% endblock %}

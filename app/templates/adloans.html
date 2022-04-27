@@ -1,0 +1,35 @@
+{% extends "adLayout.html" %}
+{% block title %}Loans{% endblock %}
+{% block favicon %} {{ super() }} {% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    .important {
+        color: #336699;
+    }
+</style>
+{% endblock %}
+{% block content %}
+{{ super() }}
+<h1>Whellcome {{username}} member to all Loans</h1>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for loan in res %}
+    <div class="col">
+        <div class="card">
+            <img src="https://picsum.photos/300/16{{loop.index}}" width="100" height="200" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">customers id: {{loan.custid}} </h5>
+                <p class="card-text">book id: {{loan.bookid}}</p>
+                <p class="card-text">loan date: {{loan.loandate}}</p>
+                <p class="card-text">return date: {{loan.returndate}}</p>
+                <a class= "btn btn-danger" href="/admin/delloan?custid={{loan.custid}}&bookid={{loan.bookid}}">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- end loop card -->
+
+{% endblock %}
+{% block footer %} {{ super() }} {% endblock %}

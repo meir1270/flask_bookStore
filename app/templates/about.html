@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}About{% endblock %}
+{% block favicon %} {{ super() }} {% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+    {{ super() }}
+<h3>here you can learn about me</h3>
+    <p style="font-family: Arial;">
+      Hello everyone my name is Meir Mavashov and I 21 years old.<br>
+      I am a Junior Python programmer at the beginning of my path I am currently studying at Gon Bryce College Full Stack Peyton Course.<br>
+      In this project I present a book store site that guests can view my books and connect to the site with the guest's details.<br>
+      they can loans a variety of books in the site and also can return them.<br>
+      you can also possible to connect from an admin user who is remembered in the system,<br>
+      there you can add books to the site and delete,you can see all the people who logged in to the site and add/delete a customer.<br>
+      you also can see all the loans of the books on the site.
+    </p>
+
+{% endblock %}
+{% block footer %} {{ super() }} {% endblock %}
+

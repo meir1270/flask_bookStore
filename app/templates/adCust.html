@@ -1,0 +1,112 @@
+{% extends "adLayout.html" %}
+{% block title %}Customers{% endblock %}
+{% block favicon %} {{ super() }} {% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    .important {
+        color: #336699;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+    <!-- navbar start -->
+    <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <a class="navbar-brand" href="/admin/books/test">Books</a>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/admin/customers/test">Customers</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin/loans/test">Loans</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/">logout</a>
+                      </li>
+                  </ul>
+                  <form class="d-flex" action="/admin/customers/test" method="POST">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchName">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+              </div>
+          </div>
+      </nav>
+  </div>
+  <!-- navbar end -->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add a Customers
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/admin/addcust" method="POST">
+                Customers name: <input type="text" name="name"><br>
+                City: <input type="text" name="city"><br>
+                Age: <input type="text" name="age"><br>
+                <div class="modal-footer">
+                <input type="submit" value="Add a Customers" class="btn btn-success">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h1>Whellcome {{username}} member to Customers list</h1>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for cust in res %}
+    <div class="col">
+        <div class="card">
+          <img src="https://picsum.photos/300/16{{loop.index}}" width="100" height="200" class="card-img-top" alt="...">
+          <div class="card-body">
+                <h5 class="card-title">Customers name: {{cust.name}} </h5>
+                <p class="card-text">id: {{cust.id}}</p>
+                <p class="card-text">city: {{cust.city}}</p>
+                <p class="card-text">age: {{cust.age}}</p>
+                <a class= "btn btn-danger" href="/admin/delcust?id={{cust.id}}">Delete</a>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+<!-- end loop card -->
+
+<div style="display: table; margin: 0 auto;" class="row row-cols-1 row-cols-md-1 g-4">
+  {% for book1 in findBook %}
+  <div class="col">
+    <div class="card">
+      <img src="https://picsum.photos/300/16{{loop.index}}" width="100" height="200" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">customer name: {{book1.name}} </h5>
+        <p class="card-text">id: {{book1.id}}</p>
+        <p class="card-text">city: {{book1.city}}</p>
+        <p class="card-text">age: {{book1.age}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+{% block footer %} {{ super() }} {% endblock %}
