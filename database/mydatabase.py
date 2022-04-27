@@ -1,4 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy import  Date, UniqueConstraint, create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
 from datetime import date, datetime, timedelta
