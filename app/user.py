@@ -24,7 +24,8 @@ def add_cust():
 @user.route('/about/',defaults ={"name":""})
 @user.route("/about/<name>")
 def ur_about(name):
-		return render_template("urabout.html",name=name)
+    custid = dbms.print_id_data_customers(name,table= mydatabase.CUSTOMERS)
+    return render_template("urabout.html",name=name,custid=custid[0])
 
 
 @user.route("/addloan/<name>")
@@ -45,14 +46,15 @@ def add_loan(name):
         twoDays = date.today() + timedelta(days=2)
         dbms.insert_loans(custid,bookid,today,twoDays)
         print(custid,bookid,today,twoDays)
-    # print(custid,bookid,today,bookid)
     return user_home(name)
 
 @user.route('/retbook/',defaults ={"name":""})   
 @user.route('/retbook/<name>')
 def user_loans(name):
-    res6 = dbms.print_data_loans(name,table= mydatabase.LOANS)
-    return render_template("retbook.html",res6 = res6,name=name)
+    custid = dbms.print_id_data_customers(name,table= mydatabase.CUSTOMERS)
+    res6 = dbms.print_data_loans(custid[0],table= mydatabase.LOANS)
+    print(res6)
+    return render_template("retbook.html",res6 = res6,name=name,custid=custid[0])
 
 @user.route("/retloan")
 def retLoan():

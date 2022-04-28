@@ -121,7 +121,7 @@ class MyDatabase:
 
         
     def find_book_cust(self,name, table='', query=''):
-        query = query if query != '' else f"SELECT * FROM '{table}' WHERE name='{name}';"
+        query = query if query != '' else f"SELECT * FROM '{table}' WHERE name LIKE '%{name}%';"
         print(query)
         res = []
         with self.db_engine.connect() as connection:
@@ -189,13 +189,13 @@ class MyDatabase:
         # print("\n")
         return res
 
-    def print_data_loans(self,name, table='', query=''):
+    def print_data_loans(self,custid, table='', query=''):
         query = query if query != '' else \
          f"SELECT LOANS.loandate,LOANS.returndate, Customers.name as custname, BOOKS.name, BOOKS.id as bookid, Customers.id as custid \
             FROM (({table}   \
             INNER JOIN Customers ON LOANS.custid = Customers.id) \
             INNER JOIN BOOKS ON LOANS.bookid = BOOKS.id) \
-            where Customers.name = '{name}';"
+            where custid = {custid};"
         print(query)
         res = []
         with self.db_engine.connect() as connection:
