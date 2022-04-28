@@ -6,10 +6,6 @@ from sqlalchemy.orm import relationship
 # Global Variables
 SQLITE                  = 'sqlite'
 
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
 
 # Table Names
 BOOKS           = 'books'
@@ -211,29 +207,6 @@ class MyDatabase:
              # print("\n")
             return res
 
-
-    # Examples
-
-    # def sample_query(self):
-    #     # Sample Query
-    #     query = "SELECT name, author, yearPublished, type  FROM {TBL_USR} WHERE " \
-    #             .format(TBL_USR=BOOKS)
-    #     self.print_all_data(query=query)
-
-    #     query = "SELECT name, city, age FROM {TBL_USR} WHERE " \
-    #             .format(TBL_USR=CUSTOMERS)
-    #     self.print_all_data(query=query)
-
-    #     # Sample Query Joining
-    #     query = "SELECT b.name as book_name, " \
-    #             "c.name as cust_name " \
-    #             "FROM {TBL_LOAN} AS l " \
-    #             "LEFT JOIN {TBL_BOOKS} as b " \
-    #             "LEFT JOIN {TBL_CUST} as c " \
-    #             "WHERE b.id=l.bookid AND c.id=l.custid;" \
-    #         .format(TBL_BOOKS=BOOKS, TBL_CUST=CUSTOMERS,TBL_LOAN= LOANS)
-    #     self.print_all_data(query=query)
-
     def delete_by_id_books(self,id):
         # Delete Data by Id
         query = f"DELETE FROM BOOKS WHERE id={id}"
@@ -250,14 +223,7 @@ class MyDatabase:
         query = f"DELETE FROM LOANS WHERE custid={custid} and bookid={bookid}"
         self.execute_query(query)
 
-        # Delete All Data
-        '''
-        query = "DELETE FROM {}".format(USERS)
-        self.execute_query(query)
-        self.print_all_data(USERS)
-        '''
-
-            
+           
     def insert_books(self,name ,author, yearPublished ,type):
             # Insert Data
         query = f"INSERT INTO BOOKS(name, author ,yearPublished , type ) " \
@@ -283,20 +249,14 @@ class MyDatabase:
         # self.print_all_data(LOANS) 
 
 
-    def update_books(self,whatToUp,value,id):
-        # Update books Data 
-        query = f"UPDATE books set {whatToUp}='{value}' WHERE id={id}"
-        self.execute_query(query)
-        self.print_all_data(BOOKS)
-
     def update_customers(self,whatToUp,value,id):
         # Update customers Data
         query = f"UPDATE CUSTOMERS set {whatToUp}='{value}' WHERE id={id}"
         self.execute_query(query)
         # self.print_all_data(CUSTOMERS)
 
-    def update_loans(self,whatToUp,value,id):
-        # Update loans Data
-        query = f"UPDATE LOANS set {whatToUp}='{value}' WHERE id={id}"
+    def update_books(self,id,name,author,yearPublished,type):
+        # Update Books Data
+        query = f"UPDATE BOOKS set name='{name}', author='{author}' ,yearPublished='{yearPublished}', type={type} \
+                WHERE id={id}"
         self.execute_query(query)
-        self.print_all_data(LOANS)

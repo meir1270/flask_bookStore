@@ -78,3 +78,14 @@ def admin_add_cust():
     print(name,city,age)
     dbms.insert_customers(name,city,age)
     return redirect("customers/test")
+
+@admin.route("/updatebook",methods=["POST"])
+def admin_update_book():
+    id = request.args.get('id')
+    name = request.form.get('name')
+    author = request.form.get('author')
+    yearPublished = request.form.get('yearPublished')
+    type = request.form.get('type')
+    print(id,name,author,yearPublished,type)
+    dbms.update_books(id,name,author,yearPublished,type)
+    return redirect("books/test")
