@@ -97,12 +97,41 @@
         <p class="card-text">id: {{book1.id}}</p>
         <p class="card-text">author name: {{book1.author}}</p>
         <p class="card-text">year published: {{book1.yearPublished}}</p>
-        <button type="button" class="btn btn-warning">Update</button>
+        <p class="card-text">type: {{book1.type}}</p>
+        <a class="btn btn-danger" href="/admin/delbook?id={{book1.id}}">Delete</a>
+        <!-- Update Modal -->
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#myModal">
+          Update
+        </button>
+        <div class="modal" id="myModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Update a Book</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/admin/updatebook?id={{book1.id}}" method="POST">
+                  book id = {{book1.id}}<br>
+                  Book name: <input type="text" name="name"><br>
+                  author name: <input type="text" name="author"><br>
+                  year published: <input type="text" name="yearPublished"><br>
+                  Book type: <input type="number" name="type"><br>
+                  <div class="modal-footer">
+                    <input type="submit" value="Update a book" class="btn btn-warning">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
+<!-- end loop card -->
 
 {% endblock %}
 {% block footer %} {{ super() }} {% endblock %}

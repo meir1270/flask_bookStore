@@ -7,11 +7,17 @@ dbms = mydatabase.MyDatabase(mydatabase.SQLITE, dbname='mydb.sqlite')
 
 
 # @user.route('/home/',defaults ={"name":""})
-@user.route('/home/<name>')
+@user.route('/home/<name>',methods=["POST","GET"])
 def user_home(name):
-    res = dbms.print_all_data_books(table=mydatabase.BOOKS)
-    custid = dbms.print_id_data_customers(name,table= mydatabase.CUSTOMERS)
-    return render_template("urhome.html",name=name,res=res,custid=custid[0])
+    if request.method == "POST":
+        searchName = request.form.get('searchName')
+        findBook = dbms.find_book_cust(searchName,table=mydatabase.BOOKS)
+        custid = dbms.print_id_data_customers(name,table= mydatabase.CUSTOMERS)
+        return render_template('urhome.html',findBook=findBook,name=name,custid=custid[0])
+    if request.method == "GET":
+        res = dbms.print_all_data_books(table=mydatabase.BOOKS)
+        custid = dbms.print_id_data_customers(name,table= mydatabase.CUSTOMERS)
+        return render_template("urhome.html",name=name,res=res,custid=custid[0])
 
 @user.route("/cust",methods=["POST","GET"])
 def add_cust():
