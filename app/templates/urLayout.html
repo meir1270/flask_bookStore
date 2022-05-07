@@ -110,10 +110,12 @@
                             <a class="nav-link" href="/">logout </a>
                         </li>
                     </ul>
+                    {% block search%}
                     <form class="d-flex" action="/user/home/{{name}}" method="POST">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchName">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
+                    {% endblock %}
                 </div>
             </div>
         </nav>
