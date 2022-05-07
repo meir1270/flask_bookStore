@@ -4,7 +4,7 @@
 ## About / usage <br>
 * What is it, what does it do <br>
  this is my first program in python, <br>
- i wiil be using with flask and as logic, <br>
+ i will be using flask as logic, <br>
  html and css and bootstarp to view front (GUI) <br> 
  and  sqlalchemy module at database mangment. <br>
  sqlite3 as sql database.<br>
