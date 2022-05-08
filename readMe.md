@@ -66,4 +66,6 @@ pip install SQLAlchemy  <br>
 pip install flask <br>
 <br>
 
-
+### Links <br>
+ • git - https://github.com/meir1270/bookStore.git <br>
+ • heroku - 
