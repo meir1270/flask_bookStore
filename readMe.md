@@ -68,4 +68,4 @@ pip install flask <br>
 
 ### Links <br>
  • git - https://github.com/meir1270/bookStore.git <br>
- • heroku - https://meirbookstore.herokuapp.com/
+ • heroku - 
